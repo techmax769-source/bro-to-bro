@@ -144,7 +144,12 @@
 <span class="comments">// 🤞 Bro to bro script</span><br>
 <span class="keyword">const</span> <span class="variable">broCode</span> = <span class="keyword">new</span> <span class="method">Promise</span>((resolve) => {<br>
 &nbsp;&nbsp;console.<span class="method">log</span>(<span class="string">"Yea, though she leaveth thee on read,"</span>);<br>
-&nbsp;&nbsp;console.<span class="method">log</span>(<span class="string">"Thou shalt not simp."</span>);<br>
+&nbsp;&nbsp;document.<span class="method">getElementById</span>(<span class="string">"focus"</span>);<br>
+&nbsp;&nbsp;<span class="keyword">if</span> (<span class="variable">focus</span>) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;console.<span class="method">log</span>(<span class="string">"Thou shalt not simp."</span>);<br>
+&nbsp;&nbsp;} <span class="keyword">else</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;console.<span class="method">log</span>(<span class="string">"Refocus thy energy, O brother of code."</span>);<br>
+&nbsp;&nbsp;}<br>
 &nbsp;&nbsp;console.<span class="method">log</span>(<span class="string">"For the path of kings is paved with focus,"</span>);<br>
 &nbsp;&nbsp;console.<span class="method">log</span>(<span class="string">"And not with thirst."</span>);<br>
 &nbsp;&nbsp;console.<span class="method">log</span>(<span class="string">"Seek not her who seeketh not thee,"</span>);<br>
@@ -160,11 +165,9 @@
 
       let i = 0;
       const totalChars = codeHTML.length;
-
-      // Target total time ~24s => avg ~24,000 / totalChars
-      const avgSpeed = 24000 / totalChars; 
-      const baseSpeed = avgSpeed * 2.2;  // start slower
-      const minSpeed = avgSpeed * 0.4;   // speed up to this
+      const avgSpeed = 24000 / totalChars;
+      const baseSpeed = avgSpeed * 2.2;
+      const minSpeed = avgSpeed * 0.4;
 
       function typeCode() {
         if (i < totalChars) {
