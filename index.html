@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>⚔️ Bro Code 1:1 — Verse of Focus</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=UnifrakturCook&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg-dark: #0d1117;
+        --bg-code: #161b22;
+        --border: #30363d;
+        --text-main: #c9d1d9;
+        --comment: #8b949e;
+        --keyword: #ff7b72;
+        --string: #a5d6ff;
+        --method: #d2a8ff;
+        --variable: #79c0ff;
+      }
+
+      body {
+        margin: 0;
+        background: radial-gradient(circle at center, #0d1117 0%, #050507 100%);
+        font-family: "Fira Code", monospace;
+        color: var(--text-main);
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px 10px;
+      }
+
+      h1 {
+        font-family: "UnifrakturCook", cursive;
+        color: #ff5555;
+        font-size: clamp(1.8rem, 6vw, 2.6rem);
+        margin-bottom: 20px;
+        text-shadow: 0 0 15px rgba(255, 85, 85, 0.5);
+        text-align: center;
+      }
+
+      #code {
+        background-color: var(--bg-code);
+        color: var(--text-main);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px;
+        width: 100%;
+        max-width: 600px;
+        min-height: 240px;
+        font-size: clamp(0.85rem, 3.5vw, 1rem);
+        line-height: 1.6em;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        overflow: hidden;
+        box-sizing: border-box;
+        position: relative;
+        animation: glow 4s ease-in-out infinite;
+      }
+
+      @keyframes glow {
+        0% {
+          box-shadow: 0 0 10px rgba(255, 85, 85, 0.25),
+            0 0 20px rgba(255, 85, 85, 0.15);
+        }
+        50% {
+          box-shadow: 0 0 25px rgba(255, 85, 85, 0.35),
+            0 0 45px rgba(255, 85, 85, 0.25);
+        }
+        100% {
+          box-shadow: 0 0 10px rgba(255, 85, 85, 0.25),
+            0 0 20px rgba(255, 85, 85, 0.15);
+        }
+      }
+
+      .comments {
+        color: var(--comment);
+      }
+      .keyword {
+        color: var(--keyword);
+        font-weight: 600;
+      }
+      .string {
+        color: var(--string);
+      }
+      .method {
+        color: var(--method);
+      }
+      .variable {
+        color: var(--variable);
+      }
+
+      .cursor {
+        display: inline-block;
+        width: 8px;
+        height: 1.2em;
+        background-color: var(--text-main);
+        margin-left: 4px;
+        animation: blink 1s steps(1) infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      footer {
+        margin-top: 25px;
+        color: #6e7681;
+        font-size: 0.85rem;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>⚔️ Bro Code 1:1</h1>
+
+    <div id="code">
+      <span id="typed-content"></span><span class="cursor"></span>
+    </div>
+
+    <footer>
+      © 2025 Bro Code Society | Team Max 🔥 Focus &gt; Feelings 🧠
+    </footer>
+
+    <audio id="type-sound">
+      <source
+        src="https://assets.mixkit.co/sfx/preview/mixkit-soft-typewriter-click-1127.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <script>
+      const codeHTML = `
+<span class="comments">// 🤞 Bro to bro script</span><br>
+<span class="keyword">const</span> <span class="variable">broCode</span> = <span class="keyword">new</span> <span class="method">Promise</span>((resolve) => {<br>
+&nbsp;&nbsp;console.<span class="method">log</span>(<span class="string">"Yea, though she leaveth thee on read,"</span>);<br>
+&nbsp;&nbsp;console.<span class="method">log</span>(<span class="string">"Thou shalt not simp."</span>);<br>
+&nbsp;&nbsp;console.<span class="method">log</span>(<span class="string">"For the path of kings is paved with focus,"</span>);<br>
+&nbsp;&nbsp;console.<span class="method">log</span>(<span class="string">"And not with thirst."</span>);<br>
+&nbsp;&nbsp;console.<span class="method">log</span>(<span class="string">"Seek not her who seeketh not thee,"</span>);<br>
+&nbsp;&nbsp;console.<span class="method">log</span>(<span class="string">"For he that simps loseth his crown."</span>);<br>
+&nbsp;&nbsp;console.<span class="method">log</span>(<span class="string">"Anyway keep coding... 😂💯"</span>);<br>
+&nbsp;&nbsp;resolve(<span class="string">"⚔️ Verse of Focus executed successfully."</span>);<br>
+});<br><br>
+
+<span class="variable">broCode</span>.<span class="method">then</span>((msg) => console.<span class="method">log</span>(msg));`;
+
+      const typedContent = document.getElementById("typed-content");
+      const typeSound = document.getElementById("type-sound");
+
+      let i = 0;
+      const totalChars = codeHTML.length;
+
+      // Target total time ~24s => avg ~24,000 / totalChars
+      const avgSpeed = 24000 / totalChars; 
+      const baseSpeed = avgSpeed * 2.2;  // start slower
+      const minSpeed = avgSpeed * 0.4;   // speed up to this
+
+      function typeCode() {
+        if (i < totalChars) {
+          typedContent.innerHTML = codeHTML.slice(0, i);
+          typeSound.currentTime = 0;
+          typeSound.play();
+          i++;
+
+          const progress = i / totalChars;
+          const currentSpeed = baseSpeed - progress * (baseSpeed - minSpeed);
+          setTimeout(typeCode, currentSpeed);
+        } else {
+          setTimeout(() => {
+            i = 0;
+            typedContent.innerHTML = "";
+            typeCode();
+          }, 5000);
+        }
+      }
+
+      typeSound.volume = 0.12;
+      typeCode();
+    </script>
+  </body>
+</html>
